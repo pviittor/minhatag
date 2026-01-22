@@ -132,7 +132,7 @@ END:VCARD`;
               />
             </div>
           </div>
-          
+
           <h1 className="mt-6 text-2xl font-bold text-gray-900 tracking-tight">Paulo Victor</h1>
           <p className="text-gray-700 font-medium mt-1">Software Developer</p>
           
