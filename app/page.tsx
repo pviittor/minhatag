@@ -14,6 +14,7 @@ import {
 import { toast } from "sonner";
 import Image from "next/image";
 import pixIcon from "./assets/pix01.png";
+import profileImg from "./assets/profile.jpg";
 
 export default function Home() {
   const [copiedPix, setCopiedPix] = useState(false);
@@ -120,17 +121,15 @@ END:VCARD`;
         {/* Header Profile */}
         <div className="flex flex-col items-center text-center">
           <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt blur"></div>
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-white flex items-center justify-center">
-               <span className="text-4xl font-bold text-gray-800">PV</span>
-              {/* 
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-900 to-indigo-900 rounded-full opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt blur"></div>
+            <div className="relative w-32 h-32 rounded-full overflow-hidden shadow-xl bg-white flex items-center justify-center">
               <Image 
-                src="/profile.jpg" 
+                src={profileImg} 
                 alt="Paulo Victor" 
                 fill 
                 className="object-cover"
+                priority
               />
-              */}
             </div>
           </div>
           
