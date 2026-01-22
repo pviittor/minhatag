@@ -125,7 +125,7 @@ END:VCARD`;
             <div className="relative w-32 h-32 rounded-full overflow-hidden shadow-xl bg-white flex items-center justify-center">
               <Image 
                 src={profileImg} 
-                alt="Paulo Victor" 
+                alt="Paulo Vitor" 
                 fill 
                 className="object-cover"
                 priority
