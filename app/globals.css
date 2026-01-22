@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-tilt: tilt 10s infinite linear;
+
+  @keyframes tilt {
+    0%, 50%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(1deg);
+    }
+    75% {
+      transform: rotate(-1deg);
+    }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+} */
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900 bg-gray-100;
+  }
+}
