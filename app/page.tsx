@@ -9,15 +9,19 @@ import {
   UserPlus,
   MapPin,
   Copy,
-  Check
+  Check,
+  Share2,
+  X
 } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import pixIcon from "./assets/pix01.png";
 import profileImg from "./assets/profile.jpg";
+import backgroundImg from "./assets/back02.jpg";
 
 export default function Home() {
   const [copiedPix, setCopiedPix] = useState(false);
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const pixKey = "000.000.000-00"; // Substitua pela sua chave Pix real
 
   const handleCopyPix = () => {
@@ -108,18 +112,33 @@ END:VCARD`;
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1920&auto=format&fit=crop"
+          src={backgroundImg}
           alt="Office Background"
           fill
-          className="object-cover blur-[2px] opacity-200"
+          className="object-cover opacity-100 blur-[2px]"
           priority
         />
-        <div className="absolute inset-0 bg-white/40" />
       </div>
 
       <div className="w-full max-w-md space-y-8 relative z-10">
         {/* Header Profile */}
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-[0_0_50px_rgba(124,58,237,0.5)] border border-white/40 relative">
+          <button 
+            onClick={() => setIsLocationModalOpen(true)}
+            className="absolute top-4 left-4 p-2 text-gray-600 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
+            aria-label="Ver localização"
+          >
+            <MapPin size={20} />
+          </button>
+          
+          <button 
+            onClick={handleShare}
+            className="absolute top-4 right-4 p-2 text-gray-600 hover:text-gray-900 hover:bg-black/5 rounded-full transition-colors"
+            aria-label="Compartilhar"
+          >
+            <Share2 size={20} />
+          </button>
+
           <div className="relative group">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-900 to-indigo-900 rounded-full opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt blur"></div>
             <div className="relative w-32 h-32 rounded-full overflow-hidden shadow-xl bg-white flex items-center justify-center">
@@ -133,7 +152,7 @@ END:VCARD`;
             </div>
           </div>
 
-          <h1 className="mt-6 text-2xl font-bold text-gray-900 tracking-tight">Paulo Victor</h1>
+          <h1 className="mt-6 text-2xl font-bold text-gray-900 tracking-tight">Paulo Vitor</h1>
           <p className="text-gray-700 font-medium mt-1">Software Developer</p>
           
           <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
@@ -213,6 +232,35 @@ END:VCARD`;
           </p>
         </div>
       </div>
+
+      {/* Location Modal */}
+      {isLocationModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsLocationModalOpen(false)}>
+          <div 
+            className="bg-white rounded-3xl w-full max-w-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 relative h-[60vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={() => setIsLocationModalOpen(false)}
+              className="absolute top-4 right-4 p-2 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-lg transition-all z-10 text-gray-600 hover:text-gray-900 hover:scale-105"
+            >
+              <X size={20} />
+            </button> 
+            
+            <iframe 
+              width="100%" 
+              height="100%" 
+              frameBorder="0" 
+              scrolling="no" 
+              marginHeight={0} 
+              marginWidth={0} 
+              src="https://maps.google.com/maps?q=Brasil&t=&z=4&ie=UTF8&iwloc=&output=embed"
+              title="Localização"
+              className="w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
